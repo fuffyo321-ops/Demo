@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Glass-Service AS</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Glass, speil og glassarbeid for private og bedrifter.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20aria-hidden%3D%22true%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2215%22%20fill%3D%22%23B5651D%22/%3E%3Cg%20transform%3D%22translate%2812%2012%29%20scale%281.6667%29%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%203h14v18H5z%22/%3E%3Cpath%20d%3D%22M12%203v18M5%2012h14%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif:wght@400&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one strong headline beside a "visit us" card, then services, hours and a request form */
+:root{--bg:#F5F4F0;--surface:#FFFFFF;--soft:#ECE9E0;--ink:#22201A;--muted:color-mix(in srgb,#22201A 66%,#F5F4F0);--line:color-mix(in srgb,#22201A 14%,#F5F4F0);
+--acc:#B5651D;--acc-ink:#FFFFFF;--ok:#2E7D4F;--closed:#B0412E;
+--f-display:"Young Serif",Georgia, serif;--f-body:"Work Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--max:1120px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#151410;--surface:#1E1C17;--soft:#1E1C17;--ink:#EEECE6;--muted:color-mix(in srgb,#EEECE6 68%,#151410);--line:color-mix(in srgb,#EEECE6 16%,#151410);--acc:#E9A15F;--acc-ink:#151410;--ok:#6BC487;--closed:#E8826F;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#151410;--surface:#1E1C17;--soft:#1E1C17;--ink:#EEECE6;--muted:color-mix(in srgb,#EEECE6 68%,#151410);--line:color-mix(in srgb,#EEECE6 16%,#151410);--acc:#E9A15F;--acc-ink:#151410;--ok:#6BC487;--closed:#E8826F;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+a{color:inherit}:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}[hidden]{display:none!important}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.08;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.9rem,4vw,2.8rem)}h3{font-size:1.3rem}p{margin:0}
+.eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--acc)}
+.lead{font-size:1.15rem;color:var(--muted);max-width:58ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font:600 1rem/1 var(--f-body);padding:.95rem 1.35rem;border-radius:8px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-1px)}.btn-acc{background:var(--acc);color:var(--acc-ink)}.btn-line{border-color:currentColor;background:transparent;color:inherit}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.7rem}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;min-width:0}.brand svg{width:40px;height:40px;flex:none}
+.brand b{font-family:var(--f-display);font-weight:400;font-size:1.35rem;line-height:1.1}
+nav.links{display:flex;gap:1.4rem;font-weight:500}nav.links a{text-decoration:none;color:var(--muted)}nav.links a:hover{color:var(--ink)}
+.top .btn{padding:.65rem 1rem;font-size:.95rem;white-space:nowrap}
+@media (max-width:860px){nav.links{display:none}}@media (max-width:560px){.top .btn{display:none}}
+.hero{padding-block:3.5rem 4rem;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem)}.hero h1 span{display:block;color:var(--acc)}
+.copy{display:grid;gap:1.3rem;min-width:0}.cta-row{display:flex;flex-wrap:wrap;gap:.75rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.5rem;display:grid;gap:1.1rem;min-width:0;box-shadow:0 20px 40px -30px rgba(0,0,0,.35)}
+.card .big{width:64px;height:64px}
+.status{display:flex;align-items:center;gap:.55rem;font-weight:600}.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.rate{display:flex;align-items:center;gap:.8rem;padding-top:1rem;border-top:1px solid var(--line)}
+.rate b{font-family:var(--f-display);font-size:2.6rem;line-height:1}.rate span{font-size:.9rem;color:var(--muted);line-height:1.35}.stars{color:var(--acc);letter-spacing:2px}
+.card .addr{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:2rem}.hero{padding-block:2.2rem 3rem}}
+section.block{padding-block:4.2rem}section.alt{background:var(--soft)}
+.head{display:grid;gap:.7rem;margin-bottom:2rem;max-width:720px}
+.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.svc article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.3rem;display:grid;gap:.45rem;align-content:start;min-width:0}
+.svc article::before{content:"";width:28px;height:4px;border-radius:2px;background:var(--acc)}
+.svc p{color:var(--muted);font-size:.96rem}
+@media (max-width:960px){.svc{grid-template-columns:1fr 1fr}}@media (max-width:520px){.svc{grid-template-columns:1fr}}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.hours{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.hours td{padding:.6rem 0;border-bottom:1px solid var(--line)}.hours td:last-child{text-align:right}
+.hours tr.today td{font-weight:700;color:var(--acc)}
+.cl{display:grid;gap:.05rem}.cl small{font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.cl b{font-size:1.2rem;overflow-wrap:anywhere}.cl a{text-decoration:none}
+.lines{display:grid;gap:1rem;margin-block:1rem 1.5rem}
+@media (max-width:860px){.visit{grid-template-columns:1fr;gap:2rem}}
+.formwrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:3rem;align-items:start}
+form.q{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--acc);border-radius:12px;padding:1.6rem;display:grid;gap:1rem;min-width:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+label{display:grid;gap:.35rem;font-weight:600;font-size:.92rem}
+input,select,textarea{font:inherit;font-weight:400;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:.75rem .85rem;width:100%;min-width:0}
+textarea{min-height:110px;resize:vertical}
+.ok{background:var(--soft);border-left:4px solid var(--ok);padding:1rem;border-radius:4px}.err{color:var(--closed)}
+@media (max-width:860px){.formwrap{grid-template-columns:1fr;gap:2rem}form.q{padding:1.2rem}}@media (max-width:480px){.row2{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);padding-block:2.2rem calc(5rem + env(safe-area-inset-bottom,0px));font-size:.92rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+.mbar{display:none}
+@media (max-width:700px){.mbar{display:grid;grid-template-columns:1fr 1.4fr;gap:.5rem;position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--ink);color:var(--bg);padding:.6rem max(12px,env(safe-area-inset-right,0px)) calc(.6rem + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}.mbar .btn{padding:.85rem .5rem}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="#top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#B5651D"/><g transform="translate(12 12) scale(1.6667)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18H5z"/><path d="M12 3v18M5 12h14"/></g></svg><b>Glass-Service AS</b></a>
+<nav class="links" aria-label="Hovedmeny"><a href="#tilbud">Tilbud</a><a href="#besok">Åpningstider</a><a href="#kontakt">Kontakt</a></nav>
+<a class="btn btn-acc" href="tel:+4763953112">Ring 63 95 31 12</a>
+</div></header>
+<main id="top">
+<section class="hero"><div class="wrap">
+<div class="copy">
+<p class="eyebrow">Glassmester · Dal</p>
+<h1>Glass til hus og bedrift <span>i Dal.</span></h1>
+<p class="lead">Glass, speil og glassarbeid for private og bedrifter.</p>
+<div class="cta-row"><a class="btn btn-acc" href="tel:+4763953112">Ring 63 95 31 12</a><a class="btn btn-line" href="#kontakt">Be om befaring</a></div>
+</div>
+<aside class="card" aria-label="Besøk oss">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="big" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#B5651D"/><g transform="translate(12 12) scale(1.6667)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18H5z"/><path d="M12 3v18M5 12h14"/></g></svg>
+<div class="status" id="status"><span class="dot" style="background:var(--muted)"></span><span>Sjekker åpningstider…</span></div>
+<p class="addr">Dal, Eidsvoll kommune<br><a href="https://www.google.com/maps/search/?api=1&query=Glass-Service+AS+Dal%2C+Eidsvoll+kommune" target="_blank" rel="noopener">Veibeskrivelse</a></p>
+
+</aside>
+</div></section>
+
+<section class="block alt" id="tilbud"><div class="wrap">
+<div class="head"><p class="eyebrow">Dette gjør vi</p><h2>Hva vi kan hjelpe deg med</h2></div>
+<!-- REDIGER: bekreft tjenestene med bedriften -->
+<div class="svc"><article><h3>Glass</h3><p>Nytt glass i vinduer og dører.</p></article><article><h3>Speil</h3><p>Speil tilpasset ditt rom.</p></article><article><h3>Reparasjon</h3><p>Knust glass byttet raskt.</p></article><article><h3>Bedrift</h3><p>Glassarbeid for butikk og næring.</p></article></div>
+</div></section>
+
+<section class="block" id="besok"><div class="wrap visit">
+<div><p class="eyebrow">Åpningstider</p><h2 style="margin-block:.6rem 1.2rem">Når har vi åpent?</h2><table class="hours" id="hours"></table></div>
+<div><p class="eyebrow">Finn oss</p><h2 style="margin-top:.6rem">Ta kontakt</h2>
+<div class="lines"><div class="cl"><small>Telefon</small><b><a href="tel:+4763953112">63 95 31 12</a></b></div><div class="cl"><small>E-post</small><b>post@glass-service.org</b></div><div class="cl"><small>Adresse</small><b>Dal, Eidsvoll kommune</b></div></div>
+<div class="cta-row"><a class="btn btn-acc" href="https://www.google.com/maps/search/?api=1&query=Glass-Service+AS+Dal%2C+Eidsvoll+kommune" target="_blank" rel="noopener">Veibeskrivelse</a><a class="btn btn-line" href="tel:+4763953112">Ring oss</a></div></div>
+</div></section>
+
+<section class="block alt" id="kontakt"><div class="wrap formwrap">
+<div><p class="eyebrow">Kontakt</p><h2 style="margin-block:.6rem 1rem">Be om befaring</h2><p class="lead">Fortell kort hva du trenger hjelp med, så tar vi kontakt og avtaler en tid.</p></div>
+<form class="q" id="q" name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+<input type="hidden" name="form-name" value="kontakt"><p hidden><label>Ikke fyll ut<input name="bot-field"></label></p>
+<div class="row2"><label for="f-name">Navn<input id="f-name" name="name" autocomplete="name" required></label>
+<label for="f-phone">Telefon<input id="f-phone" name="phone" type="tel" autocomplete="tel" required></label></div>
+<div class="row2"><label for="f-type">Gjelder<select id="f-type" name="type"><option>Glass</option><option>Speil</option><option>Reparasjon</option><option>Bedrift</option><option>Annet</option></select></label>
+<label for="f-post">Postnummer<input id="f-post" name="post" inputmode="numeric" maxlength="4" placeholder="2080"></label></div>
+<label for="f-msg">Kort om jobben<textarea id="f-msg" name="msg" placeholder="Hva skal gjøres, og når?"></textarea></label>
+<button class="btn btn-acc" type="submit" style="justify-self:start">Send forespørsel</button>
+<p class="err" id="err" hidden>Fyll inn navn og telefon, så vi kan nå deg.</p>
+<div class="ok" id="ok" hidden></div>
+</form>
+</div></section>
+</main>
+<footer><div class="wrap"><span><b style="color:var(--ink)">Glass-Service AS</b> · Dal, Eidsvoll kommune</span><span>63 95 31 12</span></div></footer>
+<nav class="mbar" aria-label="Snarveier"><a class="btn btn-line" href="tel:+4763953112">Ring</a><a class="btn btn-acc" href="#kontakt">Be om befaring</a></nav>
+<script>
+const HOURS=null; /* REDIGER: [åpner, stenger] mandag→søndag, null = stengt */
+const EMAIL="post@glass-service.org", PHONE="63 95 31 12";
+const DAYS=["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"];
+const now=new Date(), di=(now.getDay()+6)%7, tbl=document.getElementById("hours"), st=document.getElementById("status");
+const m=s=>{const[a,b]=s.split(":").map(Number);return a*60+b};
+if(!HOURS){tbl.innerHTML='<tr><td>Ring oss for åpningstider</td><td></td></tr>';st.innerHTML='<span class="dot" style="background:var(--muted)"></span><span>Ring for åpningstider</span>'}
+else{
+tbl.innerHTML=DAYS.map((d,i)=>`<tr class="${i===di?"today":""}"><td>${d}${i===di?" · i dag":""}</td><td>${HOURS[i]?HOURS[i].join("–"):"Stengt"}</td></tr>`).join("");
+const h=HOURS[di],c=now.getHours()*60+now.getMinutes();let t,col;
+if(h&&c>=m(h[0])&&c<m(h[1])){t=`Åpent nå · til ${h[1]}`;col="var(--ok)"}
+else if(h&&c<m(h[0])){t=`Åpner i dag kl. ${h[0]}`;col="var(--closed)"}
+else{let n=null;for(let k=1;k<=7;k++){const j=(di+k)%7;if(HOURS[j]){n=(k===1?"i morgen":DAYS[j].toLowerCase())+" kl. "+HOURS[j][0];break}}t=n?`Stengt · åpner ${n}`:"Stengt";col="var(--closed)"}
+st.innerHTML=`<span class="dot" style="background:${col}"></span><span>${t}</span>`}
+document.getElementById("q").addEventListener("submit",e=>{e.preventDefault();const f=e.target,err=document.getElementById("err"),ok=document.getElementById("ok");
+if(!f.name.value.trim()||!f.phone.value.trim()){err.hidden=false;return}err.hidden=true;
+const body=new URLSearchParams(new FormData(f)).toString();
+const fail=()=>{ok.hidden=false;ok.style.borderLeftColor="var(--closed)";ok.textContent=`Skjemaet kunne ikke sendes akkurat nå.${PHONE?" Ring oss på "+PHONE:""}${EMAIL?(PHONE?" eller skriv til ":" Skriv til ")+EMAIL:""}.`};
+fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body}).then(r=>{if(!r.ok)throw 0;ok.hidden=false;ok.style.borderLeftColor="";ok.textContent="Takk! Forespørselen er sendt, og vi tar kontakt så snart vi kan.";f.reset()}).catch(fail);
+});
+</script>
+</body>
+</html>
